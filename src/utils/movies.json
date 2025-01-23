@@ -1,0 +1,183 @@
+[
+    {
+      "title": "The Shawshank Redemption",
+      "year": "1994",
+      "genre": ["Drama"],
+      "country": ["USA"],
+      "imdb_rating": 9.3,
+      "oscar_nominations": 7,
+      "oscar_winning": 0,
+      "cast": ["Tim Robbins", "Morgan Freeman"],
+      "language": ["English"],
+      "oscar_nominations_list": [
+        "Best Picture",
+        "Best Actor",
+        "Best Supporting Actor"
+      ],
+      "oscar_winning_list": []
+    },
+    {
+      "title": "The Godfather",
+      "year": "1972",
+      "genre": ["Crime", "Drama"],
+      "country": ["USA"],
+      "imdb_rating": 9.2,
+      "oscar_nominations": 11,
+      "oscar_winning": 3,
+      "cast": ["Marlon Brando", "Al Pacino"],
+      "language": ["English"],
+      "oscar_nominations_list": [
+        "Best Picture",
+        "Best Actor",
+        "Best Sound"
+      ],
+      "oscar_winning_list": ["Best Picture", "Best Actor", "Best Adapted Screenplay"]
+    },
+    {
+      "title": "The Dark Knight",
+      "year": "2008",
+      "genre": ["Action", "Crime", "Drama"],
+      "country": ["USA"],
+      "imdb_rating": 9.0,
+      "oscar_nominations": 8,
+      "oscar_winning": 2,
+      "cast": ["Christian Bale", "Heath Ledger"],
+      "language": ["English"],
+      "oscar_nominations_list": [
+        "Best Supporting Actor",
+        "Best Cinematography",
+        "Best Makeup"
+      ],
+      "oscar_winning_list": ["Best Supporting Actor", "Best Sound Editing"]
+    },
+    {
+      "title": "Pulp Fiction",
+      "year": "1994",
+      "genre": ["Crime", "Drama"],
+      "country": ["USA"],
+      "imdb_rating": 4.9,
+      "oscar_nominations": 7,
+      "oscar_winning": 1,
+      "cast": ["John Travolta", "Uma Thurman", "Samuel L. Jackson"],
+      "language": ["English"],
+      "oscar_nominations_list": [
+        "Best Picture",
+        "Best Actor",
+        "Best Supporting Actor"
+      ],
+      "oscar_winning_list": ["Best Original Screenplay"]
+    },
+    {
+      "title": "Forrest Gump",
+      "year": "1994",
+      "genre": ["Drama", "Romance"],
+      "country": ["USA"],
+      "imdb_rating": 4.8,
+      "oscar_nominations": 13,
+      "oscar_winning": 6,
+      "cast": ["Tom Hanks", "Robin Wright"],
+      "language": ["English"],
+      "oscar_nominations_list": [
+        "Best Picture",
+        "Best Actor",
+        "Best Director"
+      ],
+      "oscar_winning_list": [
+        "Best Picture",
+        "Best Actor",
+        "Best Film Editing"
+      ]
+    },
+    {
+      "title": "Inception",
+      "year": "2010",
+      "genre": ["Action", "Adventure", "Sci-Fi"],
+      "country": ["USA", "UK"],
+      "imdb_rating": 8.8,
+      "oscar_nominations": 8,
+      "oscar_winning": 4,
+      "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
+      "language": ["English"],
+      "oscar_nominations_list": [
+        "Best Picture"
+      ],
+      "oscar_winning_list": [
+        "Best Cinematography",
+        "Best Sound Mixing"
+      ]
+    },
+    {
+      "title": "The Matrix",
+      "year": "1999",
+      "genre": ["Action", "Sci-Fi"],
+      "country": ["USA"],
+      "imdb_rating": 8.7,
+      "oscar_nominations": 4,
+      "oscar_winning": 4,
+      "cast": ["Keanu Reeves", "Laurence Fishburne"],
+      "language": ["English"],
+      "oscar_nominations_list": [
+        "Best Film Editing",
+        "Best Sound",
+        "Best Sound Effects Editing"
+      ],
+      "oscar_winning_list": [
+        "Best Film Editing",
+        "Best Sound"
+      ]
+    },
+    {
+      "title": "Fight Club",
+      "year": "1999",
+      "genre": ["Drama"],
+      "country": ["USA", "Germany"],
+      "imdb_rating": 8.8,
+      "oscar_nominations": 1,
+      "oscar_winning": 0,
+      "cast": ["Brad Pitt", "Edward Norton"],
+      "language": ["English"],
+      "oscar_nominations_list": ["Best Sound Editing"],
+      "oscar_winning_list": []
+    },
+    {
+      "title": "The Lord of the Rings: The Return of the King",
+      "year": "2003",
+      "genre": ["Action", "Adventure", "Drama"],
+      "country": ["USA", "New Zealand"],
+      "imdb_rating": 9.0,
+      "oscar_nominations": 11,
+      "oscar_winning": 11,
+      "cast": ["Elijah Wood", "Viggo Mortensen"],
+      "language": ["English"],
+      "oscar_nominations_list": [
+        "Best Picture",
+        "Best Director",
+        "Best Adapted Screenplay"
+      ],
+      "oscar_winning_list": [
+        "Best Picture",
+        "Best Director",
+        "Best Adapted Screenplay",
+        "Best Art Direction"
+   
+      ]
+    },
+    {
+      "title": "Interstellar",
+      "year": "2014",
+      "genre": ["Adventure", "Drama", "Sci-Fi"],
+      "country": ["USA", "UK"],
+      "imdb_rating": 6.6,
+      "oscar_nominations": 5,
+      "oscar_winning": 1,
+      "cast": ["Matthew McConaughey", "Anne Hathaway"],
+      "language": ["English"],
+      "oscar_nominations_list": [
+        "Best Original Score",
+        "Best Sound Mixing"
+  
+      ],
+      "oscar_winning_list": ["Best Visual Effects"]
+    }
+  ]
+  
