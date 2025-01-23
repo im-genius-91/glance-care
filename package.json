@@ -2,7 +2,6 @@
   "name": "glance-care",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://www.jsondataai.com",
   "dependencies": {
     "antd": "^5.23.2",
     "axios": "^1.7.9",
@@ -10,6 +9,7 @@
     "cra-template": "1.2.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.8",
+    "react-bootstrap-icons": "^1.11.5",
     "react-data-table-component": "^7.6.2",
     "react-datepicker": "^7.6.0",
     "react-dom": "^19.0.0",

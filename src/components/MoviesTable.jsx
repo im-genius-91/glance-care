@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { fetchMovies } from "../services/api";
-import { Modal, Button, Spinner, Alert } from "react-bootstrap";
+import { Modal, Button, Spinner, Alert, Form } from "react-bootstrap";
+import { DatePicker, Space } from "antd";
 import "./MoviesTable.css";
+const { RangePicker } = DatePicker;
 
 const MoviesTable = () => {
   const [movies, setMovies] = useState([]);
@@ -10,6 +12,13 @@ const MoviesTable = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchText, setSearchText] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedOscarRange, setSelectedOscarRange] = useState("");
+  const [selectedImdbRange, setSelectedImdbRange] = useState("");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   useEffect(() => {
     const loadMovies = async () => {
@@ -43,17 +52,12 @@ const MoviesTable = () => {
       name: "Title",
       selector: (row) => row.title,
       sortable: true,
-      width: "350px",
+      width: "300px",
       cell: (row) => (
         <span onClick={() => handleRowClick(row)} className="clickable-title">
           {row.title}
         </span>
       ),
-    },
-    {
-      name: "Year",
-      selector: (row) => row.year,
-      sortable: true,
     },
     {
       name: "Genre",
@@ -63,6 +67,11 @@ const MoviesTable = () => {
     {
       name: "Country",
       selector: (row) => row.country.join(", "),
+      sortable: true,
+    },
+    {
+      name: "Year",
+      selector: (row) => row.year,
       sortable: true,
     },
     {
@@ -82,10 +91,60 @@ const MoviesTable = () => {
     },
   ];
 
+  const genres = Array.from(new Set(movies.flatMap((movie) => movie.genre)));
+  const countries = Array.from(new Set(movies.flatMap((movie) => movie.country)));
+
+  const filteredMovies = movies.filter((movie) => {
+    const isMatchingSearch =
+      movie.title.toLowerCase().includes(searchText.toLowerCase()) ||
+      movie.genre.join(", ").toLowerCase().includes(searchText.toLowerCase()) ||
+      movie.country.join(", ").toLowerCase().includes(searchText.toLowerCase()) ||
+      movie.imdb_rating.toString().includes(searchText) ||
+      movie.oscar_nominations.toString().includes(searchText) ||
+      movie.cast.join(", ").toLowerCase().includes(searchText.toLowerCase()) ||
+      movie.year.toString().includes(searchText);
+
+    const isMatchingGenre = selectedGenre ? movie.genre.includes(selectedGenre) : true;
+    const isMatchingCountry = selectedCountry ? movie.country.includes(selectedCountry) : true;
+
+    const isMatchingOscarRange =
+      selectedOscarRange === ""
+        ? true
+        : selectedOscarRange === "0-5"
+          ? movie.oscar_nominations >= 0 && movie.oscar_nominations <= 5
+          : selectedOscarRange === "5-10"
+            ? movie.oscar_nominations > 5 && movie.oscar_nominations <= 10
+            : selectedOscarRange === "10+"
+              ? movie.oscar_nominations > 10
+              : true;
+
+    const isMatchingImdbRange =
+      selectedImdbRange === ""
+        ? true
+        : selectedImdbRange === "1-5"
+          ? movie.imdb_rating >= 1 && movie.imdb_rating <= 5
+          : selectedImdbRange === "5-8"
+            ? movie.imdb_rating > 5 && movie.imdb_rating <= 8
+            : selectedImdbRange === "8-10"
+              ? movie.imdb_rating > 8 && movie.imdb_rating <= 10
+              : true;
+    const isMatchingDateRange =
+      (startDate ? new Date(movie.year) >= startDate : true) && (endDate ? new Date(movie.year) <= endDate : true);
+
+    return (
+      isMatchingSearch &&
+      isMatchingGenre &&
+      isMatchingCountry &&
+      isMatchingOscarRange &&
+      isMatchingImdbRange &&
+      isMatchingDateRange
+    );
+  });
+
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 container-border">
       {isLoading && (
-        <div className="text-center my-5">
+        <div className="position-absolute top-50 start-50 translate-middle">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
@@ -97,18 +156,101 @@ const MoviesTable = () => {
           {error}
         </Alert>
       )}
-
-      {!isLoading && !error && (
-        <div>
-          <DataTable
-            columns={columns}
-            data={movies}
-            pagination={false}
-            highlightOnHover
-          />
+      <div className="row mb-4 d-flex align-items-center mt-2">
+        <div className="col-lg-2 col-md-3 col-sm-4 col-12 mb-3">
+          <Form.Group controlId="search" className="mb-0">
+            <Form.Control
+              size="sm"
+              type="text"
+              placeholder="Search"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+          </Form.Group>
         </div>
-      )}
 
+        <div className="col-lg-2 col-md-3 col-sm-4 col-12 mb-3">
+          <Form.Select
+            size="sm"
+            value={selectedGenre}
+            onChange={(e) => setSelectedGenre(e.target.value)}
+          >
+            <option value="">Genre</option>
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </Form.Select>
+        </div>
+
+        <div className="col-lg-2 col-md-3 col-sm-4 col-12 mb-3">
+          <Form.Select
+            size="sm"
+            value={selectedCountry}
+            onChange={(e) => setSelectedCountry(e.target.value)}
+          >
+            <option value="">Country</option>
+            {countries.map((country) => (
+              <option key={country} value={country}>
+                {country}
+              </option>
+            ))}
+          </Form.Select>
+        </div>
+
+        <div className="col-lg-2 col-md-3 col-sm-4 col-12 mb-3">
+          <Form.Select
+            size="sm"
+            value={selectedOscarRange}
+            onChange={(e) => setSelectedOscarRange(e.target.value)}
+          >
+            <option value="">Nominations</option>
+            <option value="0-5">⭐ 0 to 5 Nominations</option>
+            <option value="5-10">🏆 5 to 10 Nominations</option>
+            <option value="10+">👑 10 or More Nominations</option>
+          </Form.Select>
+        </div>
+
+        <div className="col-lg-2 col-md-3 col-sm-4 col-12 mb-3">
+          <Form.Select
+            size="sm"
+            value={selectedImdbRange}
+            onChange={(e) => setSelectedImdbRange(e.target.value)}
+          >
+            <option value="">Rating</option>
+            <option value="1-5">⭐ 1 to 5  &nbsp;&nbsp; IMDB Rating</option>
+            <option value="5-8">⭐ 5 to 8   &nbsp;&nbsp; IMDB Rating</option>
+            <option value="8-10">⭐ 8 to 10 &nbsp;IMDB Rating</option>
+          </Form.Select>
+        </div>
+
+        <div className="col-lg-2 col-md-3 col-sm-4 col-12 mb-3">
+          <Form.Group controlId="dateRange" className="mb-0">
+            <Space direction="horizontal" size={8}>
+              <RangePicker
+                picker="year"
+                size="small"
+                placeholder={["From", "To"]}
+                onChange={(dates) => {
+                  setStartDate(dates ? dates[0] : null);
+                  setEndDate(dates ? dates[1] : null);
+                }}
+                format="YYYY"
+                className="custom-range-picker"
+              />
+            </Space>
+          </Form.Group>
+        </div>
+      </div>
+      {!isLoading && !error && (
+        <DataTable
+          columns={columns}
+          data={filteredMovies}
+          pagination={false}
+          highlightOnHover
+        />
+      )}
       {activeMovie && (
         <Modal
           show={isModalVisible}
@@ -172,5 +314,7 @@ const MoviesTable = () => {
     </div>
   );
 };
-
 export default MoviesTable;
+
+
+
