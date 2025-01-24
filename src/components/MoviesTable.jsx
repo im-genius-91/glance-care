@@ -20,6 +20,16 @@ const MoviesTable = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
+  const customStyles = {
+    headCells: {
+      style: {
+        backgroundColor: "#828282", 
+        color: "#ffffff", 
+        fontWeight: "bold", 
+      },
+    },
+  };
+
   useEffect(() => {
     const loadMovies = async () => {
       try {
@@ -249,6 +259,7 @@ const MoviesTable = () => {
           data={filteredMovies}
           pagination={false}
           highlightOnHover
+          customStyles={customStyles}
         />
       )}
       {activeMovie && (

@@ -1,10 +1,12 @@
 import React from "react";
-import MovieTable from '../components/MoviesTable'; 
+import MoviesTable from '../components/MoviesTable'; 
+import OscarStatistics from "../components/OscarStatistics";
 
 const Dashboard = () => {
   return (
     <div>
-      <MovieTable />
+      <OscarStatistics />
+      <MoviesTable />
     </div>
   );
 };
