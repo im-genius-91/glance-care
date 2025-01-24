@@ -152,7 +152,7 @@ const MoviesTable = () => {
   });
 
   return (
-    <div className="container mt-5 container-border">
+    <div className="container mt-5 container-border ">
       {isLoading && (
         <div className="position-absolute top-50 start-50 translate-middle">
           <Spinner animation="border" role="status">

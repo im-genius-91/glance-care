@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const OscarStatistics = () => {
+const MoviesStatistics = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
 
@@ -105,4 +105,4 @@ const OscarStatistics = () => {
   );
 };
 
-export default OscarStatistics;
+export default MoviesStatistics;
