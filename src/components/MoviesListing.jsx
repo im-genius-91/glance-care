@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import { fetchMovies } from "../services/api";
 import { Modal, Button, Spinner, Alert, Form } from "react-bootstrap";
 import { DatePicker, Space } from "antd";
-import "./MoviesTable.css";
+import { fetchMovies } from "../services/api";
+import './MoviesListing.css';
 const { RangePicker } = DatePicker;
+
 
 const MoviesTable = () => {
   const [movies, setMovies] = useState([]);
   const [activeMovie, setActiveMovie] = useState(null);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchText, setSearchText] = useState("");
@@ -49,11 +50,11 @@ const MoviesTable = () => {
 
   const handleRowClick = (movie) => {
     setActiveMovie(movie);
-    setIsModalVisible(true);
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalVisible(false);
+    setIsModalOpen(false);
     setActiveMovie(null);
   };
 
@@ -264,13 +265,13 @@ const MoviesTable = () => {
       )}
       {activeMovie && (
         <Modal
-          show={isModalVisible}
+          show={isModalOpen}
           onHide={handleCloseModal}
           centered
           size="lg"
           className="custom-modal-movies"
         >
-          <Modal.Header closeButton className="bg-dark text-white">
+          <Modal.Header className="bg-dark text-white">
             <Modal.Title className="w-100 text-center">
               🎬 {activeMovie.title}
             </Modal.Title>

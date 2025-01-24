@@ -39,8 +39,8 @@
       "genre": ["Action", "Crime", "Drama"],
       "country": ["USA"],
       "imdb_rating": 9.0,
-      "oscar_nominations": 8,
-      "oscar_winning": 2,
+      "oscar_nominations": 11,
+      "oscar_winning": 11,
       "cast": ["Christian Bale", "Heath Ledger"],
       "language": ["English"],
       "oscar_nominations_list": [
@@ -140,13 +140,13 @@
       "oscar_winning_list": []
     },
     {
-      "title": "The Lord of the Rings: The Return of the King",
+      "title": "The Lord of the Rings",
       "year": "2003",
       "genre": ["Action", "Adventure", "Drama"],
       "country": ["New Zealand"],
       "imdb_rating": 9.0,
-      "oscar_nominations": 11,
-      "oscar_winning": 11,
+      "oscar_nominations": 7,
+      "oscar_winning": 5,
       "cast": ["Elijah Wood", "Viggo Mortensen"],
       "language": ["English","French","German"],
       "oscar_nominations_list": [

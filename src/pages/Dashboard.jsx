@@ -1,14 +1,16 @@
 import React from "react";
-import MoviesTable from '../components/MoviesTable'; 
+import MoviesListing from '../components/MoviesListing'; 
 import MoviesStatistics from "../components/MoviesStatistics";
 import MoviesInsights from "../components/MoviesInsights";
+import MoviesLeaderboard from "../components/MoviesLeaderBoard";
 
 const Dashboard = () => {
   return (
     <div>
+      <MoviesLeaderboard />
       <MoviesStatistics />
       <MoviesInsights />
-      <MoviesTable />
+      <MoviesListing />
     </div>
   );
 };

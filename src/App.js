@@ -8,13 +8,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
-
