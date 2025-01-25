@@ -231,29 +231,31 @@ const MoviesListing = () => {
                     <strong className="detail-title">
                       <FaTheaterMasks className="me-2" /> Genre:
                     </strong>
-                    <span className="detail-content">
-                      {activeMovie.genre.join(", ")}
+                    <span className="detail-content ms-2">
+                      {activeMovie.genre && activeMovie.genre.join(", ")}
                     </span>
                   </p>
                   <p className="movie-detail">
                     <strong className="detail-title">
                       <FaGlobe className="me-2" /> Country:
                     </strong>
-                    <span className="detail-content">
-                      {activeMovie.country.join(", ")}
+                    <span className="detail-content ms-2">
+                      {activeMovie.country && activeMovie.country.join(", ")}
                     </span>
                   </p>
                   <p className="movie-detail">
                     <strong className="detail-title">
                       <FaCalendarAlt className="me-2" /> Release Year:
                     </strong>
-                    <span className="detail-content">{activeMovie.year}</span>
+                    <span className="detail-content ms-2">
+                      {activeMovie.year}
+                    </span>
                   </p>
                   <p className="movie-detail">
                     <strong className="detail-title">
                       <FaStar className="me-2" /> IMDB Rating:
                     </strong>
-                    <span className="detail-content">
+                    <span className="detail-content ms-2">
                       {activeMovie.imdb_rating}
                     </span>
                   </p>
@@ -261,8 +263,8 @@ const MoviesListing = () => {
                     <strong className="detail-title">
                       <FaUsers className="me-2" /> Cast:
                     </strong>
-                    <span className="detail-content">
-                      {activeMovie.cast.join(", ")}
+                    <span className="detail-content ms-2">
+                      {activeMovie.cast && activeMovie.cast.join(", ")}
                     </span>
                   </p>
                 </div>
@@ -274,7 +276,7 @@ const MoviesListing = () => {
                     <strong className="detail-title">
                       <FaTrophy className="me-2" /> Oscar Nominations:
                     </strong>
-                    <span className="detail-content">
+                    <span className="detail-content ms-2">
                       {activeMovie.oscar_nominations}
                     </span>
                   </p>
@@ -282,16 +284,18 @@ const MoviesListing = () => {
                     <strong className="detail-title">
                       <FaAward className="me-2" /> Oscar Winning List:
                     </strong>
-                    <span className="detail-content">
-                      {activeMovie.oscar_winning_list.join(", ")}
+                    <span className="detail-content ms-2">
+                      {activeMovie.oscar_winning_list &&
+                        activeMovie.oscar_winning_list.join(", ")}
                     </span>
                   </p>
                   <p className="movie-detail">
                     <strong className="detail-title">
                       <FaMedal className="me-2" /> Oscar Nominations List:
                     </strong>
-                    <span className="detail-content">
-                      {activeMovie.oscar_nominations_list.join(", ")}
+                    <span className="detail-content ms-2">
+                      {activeMovie.oscar_nominations_list &&
+                        activeMovie.oscar_nominations_list.join(", ")}
                     </span>
                   </p>
                 </div>

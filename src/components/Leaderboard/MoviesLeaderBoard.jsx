@@ -34,7 +34,7 @@ const MoviesLeaderBoard = () => {
               <tr className="text-secondary">
                 <th className="w-25">Top Movies</th>
                 <th className="d-none d-md-table-cell w-12">Top Actors</th>
-                <th className="w-50">Aggregate Score</th>
+                <th className="w-50">Score Percentage</th>
                 <th className="d-none d-md-table-cell w-12">Ratings</th>
                 <th className="d-none d-md-table-cell w-12">Oscars</th>
               </tr>
