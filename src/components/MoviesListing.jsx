@@ -24,8 +24,8 @@ const MoviesTable = () => {
   const customStyles = {
     headCells: {
       style: {
-        backgroundColor: "#828282", 
-        color: "#ffffff", 
+        backgroundColor: "#e3e3e3", 
+        color: "black", 
         fontWeight: "bold", 
       },
     },
@@ -153,7 +153,7 @@ const MoviesTable = () => {
   });
 
   return (
-    <div className="container mt-5 container-border ">
+    <div className="container mt-2 container-border ">
       {isLoading && (
         <div className="position-absolute top-50 start-50 translate-middle">
           <Spinner animation="border" role="status">

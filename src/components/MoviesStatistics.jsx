@@ -8,8 +8,9 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 } from "chart.js";
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const MoviesStatistics = () => {
@@ -19,11 +20,10 @@ const MoviesStatistics = () => {
   useEffect(() => {
     const loadMovies = async () => {
       try {
-        const movies = await fetchMovies(); 
+        const movies = await fetchMovies();
         setData(movies);
       } catch (err) {
         setError("Failed to load data");
-      } finally {
       }
     };
 
@@ -34,10 +34,10 @@ const MoviesStatistics = () => {
     return <div>Error: {error}</div>;
   }
 
-  const years = data.map((movie) => movie.year); 
-  const nominations = data.map((movie) => movie.oscar_nominations); 
-  const wins = data.map((movie) => movie.oscar_winning); 
-  const titles = data.map((movie) => movie.title); 
+  const years = data.map((movie) => movie.year);
+  const nominations = data.map((movie) => movie.oscar_nominations);
+  const wins = data.map((movie) => movie.oscar_winning);
+  const titles = data.map((movie) => movie.title);
 
   const chartData = {
     labels: years,
@@ -67,7 +67,6 @@ const MoviesStatistics = () => {
       },
       title: {
         display: true,
-        text: "Oscar Nominations and Wins by Year",
       },
       tooltip: {
         callbacks: {
@@ -76,7 +75,7 @@ const MoviesStatistics = () => {
             const dataIndex = tooltipItem.dataIndex;
             const datasetLabel = chartData.datasets[datasetIndex].label;
             const value = chartData.datasets[datasetIndex].data[dataIndex];
-            const movieTitle = titles[dataIndex]; 
+            const movieTitle = titles[dataIndex];
             return `${datasetLabel}: ${value} (Movie: ${movieTitle})`;
           },
         },
@@ -88,11 +87,17 @@ const MoviesStatistics = () => {
           display: true,
           text: "Year",
         },
+        ticks: {
+          display: true,
+        },
       },
       y: {
         title: {
           display: true,
           text: "Count",
+        },
+        ticks: {
+          display: true,
         },
       },
     },
@@ -100,7 +105,12 @@ const MoviesStatistics = () => {
 
   return (
     <div className="chart-container">
-      <Bar key={JSON.stringify(chartData)} data={chartData} options={options} />
+      <Bar
+        key={JSON.stringify(chartData)}
+        data={chartData}
+        options={options}
+        className="responsive-chart"
+      />
     </div>
   );
 };

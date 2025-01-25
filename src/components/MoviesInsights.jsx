@@ -11,11 +11,10 @@ const MoviesInsights = () => {
   useEffect(() => {
     const loadMovies = async () => {
       try {
-        const movies = await fetchMovies(); 
+        const movies = await fetchMovies();
         setData(movies);
       } catch (err) {
         setError("Failed to load data");
-      } finally {
       }
     };
 
@@ -31,7 +30,7 @@ const MoviesInsights = () => {
       acc[country] = (acc[country] || 0) + 1;
     });
     return acc;
-}, {});
+  }, {});
 
   const languageCounts = data.reduce((acc, movie) => {
     movie.language.forEach((language) => {
@@ -52,13 +51,14 @@ const MoviesInsights = () => {
           "rgba(255, 159, 64, 0.6)",
           "rgba(54, 162, 235, 0.6)",
           "rgba(255, 99, 132, 0.6)",
-          "rgba(255, 205, 86, 0.6)"
-        ], 
+          "rgba(255, 205, 86, 0.6)",
+        ],
         borderColor: "rgba(255, 255, 255, 1)",
-        borderWidth: 1
-      }
-    ]
+        borderWidth: 1,
+      },
+    ],
   };
+
   const languageChartData = {
     labels: Object.keys(languageCounts),
     datasets: [
@@ -71,13 +71,14 @@ const MoviesInsights = () => {
           "rgba(255, 159, 64, 0.6)",
           "rgba(54, 162, 235, 0.6)",
           "rgba(255, 99, 132, 0.6)",
-          "rgba(255, 205, 86, 0.6)"
-        ], 
+          "rgba(255, 205, 86, 0.6)",
+        ],
         borderColor: "rgba(255, 255, 255, 1)",
-        borderWidth: 1
-      }
-    ]
+        borderWidth: 1,
+      },
+    ],
   };
+
   const options = {
     responsive: true,
     plugins: {
@@ -85,20 +86,22 @@ const MoviesInsights = () => {
         callbacks: {
           label: function (context) {
             return `${context.label}: ${context.raw} movies`;
-          }
-        }
+          },
+        },
       },
       legend: {
-        position: "top"
-      }
-    }
+        position: "top",
+      },
+    },
   };
+
   return (
-    <div className="insights-container">
-      <div className="chart-container">
+    <div className="insights-container row">
+      <div className="chart-container col-12 col-md-6 mb-3">
         <Pie data={countryChartData} options={options} />
       </div>
-      <div className="chart-container">
+
+      <div className="chart-container col-12 col-md-6 mb-3 d-none d-md-block">
         <Pie data={languageChartData} options={options} />
       </div>
     </div>

@@ -41,7 +41,7 @@ const MoviesLeaderBoard = () => {
     .slice(0, 5);
 
   return (
-    <div className="top-performers-container">
+    <div className="m-3">
       <Card className="mb-4 shadow-sm">
         <Card.Body>
           <Table responsive className="table-borderless">
@@ -51,7 +51,7 @@ const MoviesLeaderBoard = () => {
                 <th className="d-none d-md-table-cell w-12">Top Actors</th>
                 <th className="w-50">Aggregate Score</th>
                 <th className="d-none d-md-table-cell w-12">Ratings</th>
-                <th className="d-none d-md-table-cell w-12">Oscar</th>
+                <th className="d-none d-md-table-cell w-12">Oscars</th>
               </tr>
             </thead>
             <tbody>

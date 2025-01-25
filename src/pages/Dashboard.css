@@ -1,0 +1,10 @@
+.chart-column {
+  width: 100%; 
+}
+
+@media (max-width: 1550px) {
+  .chart-column {
+    width: 100% !important; 
+    height: auto !important;
+  }
+}

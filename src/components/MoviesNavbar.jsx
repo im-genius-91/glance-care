@@ -3,7 +3,7 @@ import { Navbar, Container } from "react-bootstrap";
 
 const MoviesNavbar = () => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className="mx-3 rounded">
       <Container>
         <Navbar.Brand href="/dashboard">Glance Care</Navbar.Brand>
       </Container>
@@ -12,3 +12,4 @@ const MoviesNavbar = () => {
 };
 
 export default MoviesNavbar;
+
