@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 import { Container } from "react-bootstrap";
 import { genreChart } from "../../helpers/genre";
-import { fetchMovies } from "../../api/api";
+import { MoviesData } from "../../api/api";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -25,19 +25,24 @@ ChartJS.register(
 
 const MoviesGenre = () => {
   const [chartData, setChartData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadMovies = async () => {
-      try {
-        const movies = await fetchMovies();
-        const data = genreChart(movies);
+      const response = await MoviesData();
+      if (response.status === 200) {
+        const data = genreChart(response.data);
         setChartData(data);
-      } catch (err) {
-        console.error("Failed to load movies", err);
+      } else {
+        setError(response.message || "An error occurred while loading data");
       }
     };
     loadMovies();
   }, []);
+
+  {
+    error && <p className="text-danger">{error}</p>;
+  }
 
   return (
     <Container className="p-1">

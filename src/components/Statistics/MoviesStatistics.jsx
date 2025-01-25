@@ -10,8 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { fetchMovies } from "../../api/api";
-
+import { MoviesData } from "../../api/api";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,21 +26,19 @@ const MoviesStatistics = () => {
 
   useEffect(() => {
     const loadMovies = async () => {
-      try {
-        const movies = await fetchMovies();
-        setData(movies);
-      } catch (err) {
-        setError("Failed to load data");
+      const response = await MoviesData();
+      if (response.status === 200) {
+        setData(response.data);
+      } else {
+        setError(response.message || "An error occurred");
       }
     };
-
     loadMovies();
   }, []);
 
   if (error) {
     return <div>Error: {error}</div>;
   }
-
   const { chartData, titles } = statisticsChart(data);
   const options = statisticsOptions(chartData, titles);
 

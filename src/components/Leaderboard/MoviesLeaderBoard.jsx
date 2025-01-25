@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, ProgressBar, Table } from "react-bootstrap";
 import { FaFilm } from "react-icons/fa";
 import { getTopMovies } from "../../helpers/leaderboard";
-import { fetchMovies } from "../../api/api";
+import { MoviesData } from "../../api/api";
 
 const MoviesLeaderBoard = () => {
   const [movies, setMovies] = useState([]);
@@ -10,13 +10,14 @@ const MoviesLeaderBoard = () => {
 
   useEffect(() => {
     const loadMovies = async () => {
-      try {
-        const moviesData = await fetchMovies();
-        setMovies(moviesData);
-      } catch (err) {
-        setError("Failed to load data");
+      const response = await MoviesData();
+      if (response.status === 200) {
+        setMovies(response.data);
+      } else {
+        setError(response.message || "Failed to load data");
       }
     };
+
     loadMovies();
   }, []);
 

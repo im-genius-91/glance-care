@@ -19,7 +19,7 @@ import {
   getCountries,
   getColumns,
 } from "../../helpers/listing";
-import { fetchMovies } from "../../api/api";
+import { MoviesData } from "../../api/api";
 import "./MoviesListing.css";
 const { RangePicker } = DatePicker;
 
@@ -49,20 +49,26 @@ const MoviesListing = () => {
 
   useEffect(() => {
     const loadMovies = async () => {
+      setIsLoading(true);
       try {
-        setIsLoading(true);
-        const data = await fetchMovies();
-        setMovies(data);
-        setError(null);
+        const response = await MoviesData();
+        if (response.status === 200) {
+          setMovies(response.data);
+        } else {
+          setError(response.message || "Failed to load data");
+        }
       } catch (err) {
-        setError("Failed to load movies. Please try again later.");
+        setError("An error occurred while loading the data.");
       } finally {
         setIsLoading(false);
       }
     };
-
     loadMovies();
   }, []);
+
+  if (error) {
+    return <div className="text-danger m-3">Error: {error}</div>;
+  }
 
   const showMovie = (movie) => {
     setActiveMovie(movie);

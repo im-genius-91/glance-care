@@ -6,7 +6,7 @@ import {
   languageChart,
   chartOptions,
 } from "../../helpers/insights";
-import { fetchMovies } from "../../api/api";
+import { MoviesData } from "../../api/api";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const MoviesInsights = () => {
@@ -15,13 +15,14 @@ const MoviesInsights = () => {
 
   useEffect(() => {
     const loadMovies = async () => {
-      try {
-        const movies = await fetchMovies();
-        setData(movies);
-      } catch (err) {
-        setError("Failed to load data");
+      const response = await MoviesData();
+      if (response.status === 200) {
+        setData(response.data);
+      } else {
+        setError(response.message || "Failed to load data");
       }
     };
+
     loadMovies();
   }, []);
 
@@ -53,7 +54,6 @@ const MoviesInsights = () => {
       <div className="chart-container col-12 col-md-6 mb-3">
         <Pie data={countryChartData} options={chartOptions} />
       </div>
-
       <div className="chart-container col-12 col-md-6 mb-3 d-none d-md-block">
         <Pie data={languageChartData} options={chartOptions} />
       </div>
