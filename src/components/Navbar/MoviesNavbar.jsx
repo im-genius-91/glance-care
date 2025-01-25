@@ -10,6 +10,4 @@ const MoviesNavbar = () => {
     </Navbar>
   );
 };
-
 export default MoviesNavbar;
-

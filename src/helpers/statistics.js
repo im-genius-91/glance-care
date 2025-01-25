@@ -1,43 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Bar } from "react-chartjs-2";
-import { fetchMovies } from "../services/api";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-const MoviesStatistics = () => {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const loadMovies = async () => {
-      try {
-        const movies = await fetchMovies();
-        setData(movies);
-      } catch (err) {
-        setError("Failed to load data");
-      }
-    };
-
-    loadMovies();
-  }, []);
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  const years = data.map((movie) => movie.year);
-  const nominations = data.map((movie) => movie.oscar_nominations);
-  const wins = data.map((movie) => movie.oscar_winning);
-  const titles = data.map((movie) => movie.title);
+export const statisticsChart = (movies) => {
+  const years = movies.map((movie) => movie.year);
+  const nominations = movies.map((movie) => movie.oscar_nominations);
+  const wins = movies.map((movie) => movie.oscar_winning);
+  const titles = movies.map((movie) => movie.title);
 
   const chartData = {
     labels: years,
@@ -59,7 +24,11 @@ const MoviesStatistics = () => {
     ],
   };
 
-  const options = {
+  return { chartData, titles };
+};
+
+export const statisticsOptions = (chartData, titles) => {
+  return {
     responsive: true,
     plugins: {
       legend: {
@@ -102,17 +71,4 @@ const MoviesStatistics = () => {
       },
     },
   };
-
-  return (
-    <div className="chart-container">
-      <Bar
-        key={JSON.stringify(chartData)}
-        data={chartData}
-        options={options}
-        className="responsive-chart"
-      />
-    </div>
-  );
 };
-
-export default MoviesStatistics;

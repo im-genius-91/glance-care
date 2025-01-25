@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { fetchMovies } from "../services/api";
 import { Card, ProgressBar, Table } from "react-bootstrap";
 import { FaFilm } from "react-icons/fa";
+import { getTopMovies } from "../../helpers/leaderboard";
+import { fetchMovies } from "../../api/api";
 
 const MoviesLeaderBoard = () => {
   const [movies, setMovies] = useState([]);
@@ -10,7 +11,7 @@ const MoviesLeaderBoard = () => {
   useEffect(() => {
     const loadMovies = async () => {
       try {
-        const moviesData = await fetchMovies(); 
+        const moviesData = await fetchMovies();
         setMovies(moviesData);
       } catch (err) {
         setError("Failed to load data");
@@ -21,24 +22,7 @@ const MoviesLeaderBoard = () => {
 
   if (error) return <div>Error: {error}</div>;
 
-  const calculateScore = (movie) => {
-    const imdbWeight = 0.5;
-    const nominationsWeight = 0.3;
-    const winsWeight = 0.2;
-    return (
-      movie.imdb_rating * imdbWeight +
-      movie.oscar_nominations * nominationsWeight +
-      movie.oscar_winning * winsWeight
-    );
-  };
-
-  const topMovies = [...movies]
-    .map((movie) => ({
-      ...movie,
-      score: calculateScore(movie),
-    }))
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 5);
+  const topMovies = getTopMovies(movies);
 
   return (
     <div className="m-3">
@@ -58,7 +42,7 @@ const MoviesLeaderBoard = () => {
               {topMovies.map((movie, index) => {
                 const maxScore = 10;
                 const progressPercentage = (movie.score / maxScore) * 100;
-                const topActor = movie.cast?.[0] || "N/A"; 
+                const topActor = movie.cast?.[0] || "N/A";
 
                 return (
                   <tr
@@ -67,8 +51,8 @@ const MoviesLeaderBoard = () => {
                     style={{ transition: "background-color 0.3s" }}
                   >
                     <td>
-                        <FaFilm className="me-2 text-primary" size={16} />
-                        {movie.title}
+                      <FaFilm className="me-2 text-primary" size={16} />
+                      {movie.title}
                     </td>
                     <td className="d-none d-md-table-cell">{topActor}</td>
                     <td>
