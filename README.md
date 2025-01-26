@@ -19,5 +19,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### Screenshots
 
-glance-care/public/screen-shots/glance-care1.png
-glance-care/public/screen-shots/glance-care2.png
+![Dashboard](src/public/screenshots/glance-care1.png)
+![Dashboard](src/public/screenshots/glance-care2.png)
+![Dashboard](src/public/screenshots/modal.png)
+![Dashboard](src/public/screenshots/percentage-score.png)
+![Dashboard](src/public/screenshots/responsive-listing.png)
